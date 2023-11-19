@@ -9,13 +9,13 @@
             cacheDatabase.ResetTable();
 
             //get all messages
-            Console.WriteLine("Getting all messages once");
+            Console.WriteLine("Getting all messages once...");
             var messages = await cacheDatabase.GetMessages();
 
-            Console.WriteLine("Getting all messages twice");
+            Console.WriteLine("Getting all messages twice...");
             messages = await cacheDatabase.GetMessages();
 
-            Console.WriteLine("Getting all messages three times");
+            Console.WriteLine("Getting all messages three times...");
             messages = await cacheDatabase.GetMessages();
             Console.WriteLine();
 
@@ -28,14 +28,14 @@
             Console.WriteLine();
 
             //Update ALL messages
-            Console.WriteLine("Updating all messages");
+            Console.WriteLine("Updating all messages...");
             foreach (var msg in messages)
             {
                 await cacheDatabase.UpdateMessage(msg.Id);
             }
 
             //get all messages again and print them out
-            Console.WriteLine("Getting all messages again");
+            Console.WriteLine("Getting all messages again...");
             messages = await cacheDatabase.GetMessages();
             Console.WriteLine("All messages:");
             foreach (var msg in messages)
@@ -47,6 +47,7 @@
             //wait for updates to complete
             Console.WriteLine("Waiting for updates to complete");
             await cacheDatabase.WaitForUpdates();
+            Console.WriteLine("Updates are completed!");
         }
     }
 }
