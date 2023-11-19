@@ -2,9 +2,22 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Database db = new Database();
+            db.ResetTable();
+
+            //get all messages from the database
+            Console.WriteLine("Getting Messages from database");
+            var messages = await db.GetMessages();
+
+
+            //loop through each message and spit it out
+            foreach (var msg in messages)
+            {
+                Console.WriteLine($"{msg.Name}: {msg.Content}");
+            }
+            Console.WriteLine();
         }
     }
 }
