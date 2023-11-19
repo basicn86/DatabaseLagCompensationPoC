@@ -90,7 +90,7 @@ namespace DatabaseLagCompensationPoC
         {
             var command = connection.CreateCommand();
             command.CommandText = @"
-                UPDATE Messages SET Content = 'Updated' WHERE Id = $id;";
+                UPDATE Messages SET Content = 'The contents have been updated' WHERE Id = $id;";
             command.Parameters.AddWithValue("$id", id);
             command.ExecuteNonQuery();
 

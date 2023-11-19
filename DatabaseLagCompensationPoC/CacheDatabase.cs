@@ -26,13 +26,13 @@ namespace DatabaseLagCompensationPoC
             return msgCache;
         }
 
-        //update message, just set the content of it to "Updated" for simplicity sake
+        //update message, just set the content of it to "The contents have been updated" for simplicity sake
         public async Task UpdateMessage(int id)
         {
             var msg = msgCache.FirstOrDefault(m => m.Id == id);
             if (msg != null)
             {
-                msg.Content = "Updated";
+                msg.Content = "The contents have been updated";
             }
             var task = db.UpdateMessage(id);
             updates.Add(task);

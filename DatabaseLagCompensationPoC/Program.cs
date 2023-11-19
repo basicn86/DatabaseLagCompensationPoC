@@ -27,9 +27,12 @@
             }
             Console.WriteLine();
 
-            //update message 1
-            Console.WriteLine("Updating message 1");
-            await cacheDatabase.UpdateMessage(1);
+            //Update ALL messages
+            Console.WriteLine("Updating all messages");
+            foreach (var msg in messages)
+            {
+                await cacheDatabase.UpdateMessage(msg.Id);
+            }
 
             //get all messages again and print them out
             Console.WriteLine("Getting all messages again");
