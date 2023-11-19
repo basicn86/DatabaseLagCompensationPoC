@@ -9,6 +9,8 @@ namespace DatabaseLagCompensationPoC
 {
     public class Database
     {
+        private const int FakeLag = 10000; // in ms
+
         private SqliteConnection connection;
 
         public Database()
@@ -79,7 +81,7 @@ namespace DatabaseLagCompensationPoC
             }
 
             //fake lag
-            await Task.Delay(1000);
+            await Task.Delay(FakeLag);
 
             return messages;
         }
@@ -91,6 +93,8 @@ namespace DatabaseLagCompensationPoC
                 UPDATE Messages SET Content = 'Updated' WHERE Id = $id;";
             command.Parameters.AddWithValue("$id", id);
             command.ExecuteNonQuery();
+
+            await Task.Delay(FakeLag);
         }
     }
 }

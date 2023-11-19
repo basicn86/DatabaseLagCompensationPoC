@@ -4,20 +4,46 @@
     {
         static async Task Main(string[] args)
         {
-            Database db = new Database();
-            db.ResetTable();
+            CacheDatabase cacheDatabase = new CacheDatabase();
 
-            //get all messages from the database
-            Console.WriteLine("Getting Messages from database");
-            var messages = await db.GetMessages();
+            cacheDatabase.ResetTable();
 
+            //get all messages
+            Console.WriteLine("Getting all messages once");
+            var messages = await cacheDatabase.GetMessages();
 
-            //loop through each message and spit it out
+            Console.WriteLine("Getting all messages twice");
+            messages = await cacheDatabase.GetMessages();
+
+            Console.WriteLine("Getting all messages three times");
+            messages = await cacheDatabase.GetMessages();
+            Console.WriteLine();
+
+            //print out all messages
+            Console.WriteLine("All messages:");
             foreach (var msg in messages)
             {
-                Console.WriteLine($"{msg.Name}: {msg.Content}");
+                Console.WriteLine($"Id: {msg.Id}, Name: {msg.Name}, Content: {msg.Content}");
             }
             Console.WriteLine();
+
+            //update message 1
+            Console.WriteLine("Updating message 1");
+            await cacheDatabase.UpdateMessage(1);
+
+            //get all messages again and print them out
+            Console.WriteLine("Getting all messages again");
+            messages = await cacheDatabase.GetMessages();
+            Console.WriteLine("All messages:");
+            foreach (var msg in messages)
+            {
+                Console.WriteLine($"Id: {msg.Id}, Name: {msg.Name}, Content: {msg.Content}");
+            }
+            Console.WriteLine();
+
+            //wait for updates to complete
+            Console.WriteLine("Waiting for updates to complete");
+            await cacheDatabase.WaitForUpdates();
         }
     }
 }
