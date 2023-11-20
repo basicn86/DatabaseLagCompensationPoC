@@ -20,4 +20,4 @@ Instead of waiting for a response from the server, why don't we predict the resp
 
 ![Lag Compensation](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/LagComp.drawio.svg)
 
-As depicted above, when a user initiates an action, whether updating or retrieving data, the system consults the local cache first. This approach ensures that the client receives real-time feedback, observing changes on the client side before any data is sent to the server. Subsequently, asynchronous network requests are dispatched to update the database, aligning the server with the locally previewed changes.
+As depicted above, when a user initiates an action, whether updating or retrieving data, the system consults the local cache first. This approach ensures that the client receives real-time feedback, observing changes on the client side before any data is sent to the server. Subsequently, asynchronous network requests are dispatched to update the database, aligning the server with the locally previewed changes. This approach guarantees that the lag that the user perceives is much less than the real lag, leading to a responsive user experience.
