@@ -21,3 +21,13 @@ Instead of waiting for a response from the server, why don't we predict the resp
 ![Lag Compensation](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/LagComp.drawio.svg)
 
 As depicted above, when a user initiates an action, whether updating or retrieving data, the system consults the local cache first. This approach ensures that the client receives real-time feedback, observing changes on the client side before any data is sent to the server. Subsequently, asynchronous network requests are dispatched to update the database, aligning the server with the locally previewed changes. This approach guarantees that the lag that the user perceives is much less than the real lag, leading to a responsive user experience.
+
+## Demonstration Program
+### Example 1
+![Example 1](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/ex1.png)
+
+In this example, we retrieve a set of messages from the database. Since the cache is empty, retrieving data from the database for the first time takes a long time. Data from the first request will be utilized to fill the caching layer, making any subsequent requests faster than the first.
+### Example 2
+![Example 2](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/ex2.png)
+
+In this example, we update the contents of a set of messages from the database. When the user has updated those messages, the user can see their changes reflected immediately while the network requests for those changes are made in the background. This results in a more responsive user experience as there is no need to wait for a database response. Towards the end of the example, we verified that our changes were successfully applied to the database by waiting and retrieving the data from the database again.
