@@ -15,3 +15,9 @@ Lag not only diminishes the user experience but also constrains users, limiting 
 ![No Lag Compensation](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/NoLagComp.drawio.svg)
 
 The depicted scenario showcases the inherent limitations of a laggy system, where the client is bound by the pace of the server's responses, impacting the user's ability to work efficiently.
+## The Solution
+Instead of waiting for a response from the server, why don't we predict the response from the server? By implementing a local cache, we allow the client to anticipate and predict server responses. When a user initiates an action, whether it be updating or retrieving data, our system utilizes the local cache first before the database. This predictive approach significantly reduces the reliance on synchronous server responses, enabling the client to operate more independently and receive virtually instantaneous feedback.
+
+![Lag Compensation](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/LagComp.drawio.svg)
+
+As depicted above, when a user initiates an action, whether updating or retrieving data, the system consults the local cache first. This approach ensures that the client receives real-time feedback, observing changes on the client side before any data is sent to the server. Subsequently, asynchronous network requests are dispatched to update the database, aligning the server with the locally previewed changes.
