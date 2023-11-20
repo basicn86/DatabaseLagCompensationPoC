@@ -11,3 +11,5 @@ Network delays can significantly impact the responsiveness of user interfaces, l
 The typical workflow involves synchronous interaction with the database, where changes made by the user are committed first before any feedback is provided. As a result, users often experience lag between their actions and the reflection of those actions in the user interface, therefore degrading the overall quality of the application.
 
 Lag not only diminishes the user experience but also constrains users, limiting their ability to work at their optimal speed. Laggy systems force users to operate at the pace limited by network delays, impeding productivity and creating frustration. This limitation is particularly pronounced in scenarios where rapid data updates are essential, or the database is at high usage, as users find themselves bound to the constraints of the laggy network.
+
+![No Lag Compensation](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/NoLagComp.drawio.svg)
