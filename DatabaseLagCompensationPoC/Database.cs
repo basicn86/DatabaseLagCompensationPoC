@@ -88,13 +88,33 @@ namespace DatabaseLagCompensationPoC
 
         public async Task UpdateMessage(int id)
         {
+            await Task.Delay(FakeLag);
+
             var command = connection.CreateCommand();
             command.CommandText = @"
                 UPDATE Messages SET Content = 'The contents have been updated' WHERE Id = $id;";
             command.Parameters.AddWithValue("$id", id);
             command.ExecuteNonQuery();
+        }
 
-            await Task.Delay(FakeLag);
+        public List<Msg> GetMessagesNoLag()
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = @"
+                SELECT Id, Name, Content FROM Messages;
+            ";
+            var reader = command.ExecuteReader();
+
+            var messages = new List<Msg>();
+            while (reader.Read())
+            {
+                var id = reader.GetInt32(0);
+                var name = reader.GetString(1);
+                var content = reader.GetString(2);
+                messages.Add(new Msg(id, name, content));
+            }
+
+            return messages;
         }
     }
 }

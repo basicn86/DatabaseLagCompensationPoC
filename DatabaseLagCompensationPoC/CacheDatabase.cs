@@ -48,5 +48,10 @@ namespace DatabaseLagCompensationPoC
         {
             db.ResetTable();
         }
+
+        public List<Msg> GetCurrentServerMessages()
+        {
+            return db.GetMessagesNoLag();
+        }
     }
 }
