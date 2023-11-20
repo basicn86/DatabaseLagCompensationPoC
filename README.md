@@ -31,3 +31,10 @@ In this example, we retrieve a set of messages from the database. Since the cach
 ![Example 2](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/ex2.png)
 
 In this example, we update the contents of a set of messages from the database. When the user has updated those messages, the user can see their changes reflected immediately while the network requests for those changes are made in the background. This results in a more responsive user experience as there is no need to wait for a database response. Towards the end of the example, we verified that our changes were successfully applied to the database by waiting and retrieving the data from the database again.
+
+## Current Limitations
+* **No Reconciliation:** In the event of a disagreement between the locally previewed changes and the actual database, the system currently lacks a mechanism for automatic reconciliation. This means that if a conflict arises, where the database rejects an update initiated by the user, the disagreement won't be automatically resolved or reflected in the user's local cache.
+* **Cumbersome Scalability:** Each variable needs its own unique prediction logic. As the application grows, this can lead to increased code complexity and difficulty debugging code.
+
+## Conclusion
+In conclusion, this proof of concept demonstrates the potential of implementing a caching layer to enhance the application's speed and elevate user responsiveness. By leveraging local caches, users can experience near-instantaneous feedback on data interactions, mitigating the impact of network delays. However, as with any innovative solution, there are tradeoffs to consider. One notable tradeoff is increased code complexity, particularly as the application scales. Another is the introduction of reconciliation events, this becomes a crucial consideration. This proof of concept serves as a valuable exploration into the field of networking and predictive interaction, providing insights that pave the way for further refinement and optimization in the goal of a seamlessly responsive user experience.
