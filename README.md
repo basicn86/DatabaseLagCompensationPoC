@@ -13,4 +13,5 @@ The typical workflow involves synchronous interaction with the database, where c
 Lag not only diminishes the user experience but also constrains users, limiting their ability to work at their optimal speed. Laggy systems force users to operate at the pace limited by network delays, impeding productivity and creating frustration. This limitation is particularly pronounced in scenarios where rapid data updates are essential, or the database is at high usage, as users find themselves bound to the constraints of the laggy network.
 
 ![No Lag Compensation](https://github.com/basicn86/DatabaseLagCompensationPoC/blob/master/Images/NoLagComp.drawio.svg)
+
 The depicted scenario showcases the inherent limitations of a laggy system, where the client is bound by the pace of the server's responses, impacting the user's ability to work efficiently.
